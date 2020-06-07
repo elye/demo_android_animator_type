@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity() {
         txt_animate.rotationX = 0f
         txt_animate.animate().apply {
             rotationX(3600f)
+            rotationY( 3600f)
             duration = 5000
             interpolator = AccelerateDecelerateInterpolator()
         }.start()
@@ -164,7 +165,7 @@ class MainActivity : AppCompatActivity() {
         currentAnimator?.cancel()
 
         currentAnimator = ValueAnimator.ofObject(
-            GradientArgEvaluator(),
+            GradientArgbEvaluator(),
             intArrayOf(Color.RED, Color.RED, Color.RED),
             intArrayOf(Color.RED, Color.RED, Color.GREEN),
             intArrayOf(Color.RED, Color.GREEN, Color.BLACK),
@@ -191,7 +192,7 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
-class GradientArgEvaluator : TypeEvaluator<IntArray> {
+class GradientArgbEvaluator : TypeEvaluator<IntArray> {
     private val argbEvaluator = ArgbEvaluator()
 
     override fun evaluate(fraction: Float, startValue: IntArray, endValue: IntArray): IntArray {

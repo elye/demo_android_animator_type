@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         }.start()
     }
 
-    fun objectProperty(view: View) {
+    fun objectAnimator(view: View) {
         currentAnimator?.cancel()
 
         currentAnimator = ObjectAnimator.ofFloat(txt_animate, View.ROTATION_X, 0f, 3600f).apply {
@@ -49,8 +49,10 @@ class MainActivity : AppCompatActivity() {
         currentAnimator?.cancel()
         txt_animate.paint.shader = null
 
-        currentAnimator = ObjectAnimator.ofArgb(txt_animate, "textColor",
-            Color.parseColor("#FFFF0000"), Color.parseColor("#FF0000FF")).apply {
+        currentAnimator = ObjectAnimator.ofArgb(
+            txt_animate, "textColor",
+            Color.parseColor("#FFFF0000"), Color.parseColor("#FF0000FF")
+        ).apply {
             duration = 5000
             interpolator = AccelerateDecelerateInterpolator()
             repeatCount = INFINITE
@@ -59,21 +61,51 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    fun objectAnimatorXML(view: View) {
+        currentAnimator?.cancel()
+        txt_animate.paint.shader = null
+        currentAnimator =
+            (AnimatorInflater.loadAnimator(
+                this,
+                R.animator.custom_object_animator
+            ) as ObjectAnimator).apply {
+                target = txt_animate
+                start()
+            }
+    }
+
     fun propertyValueHolders(view: View) {
         currentAnimator?.cancel()
         txt_animate.paint.shader = null
 
         val rotationX = PropertyValuesHolder.ofFloat(View.ROTATION_X, 0f, 3600f)
-        val textColor = PropertyValuesHolder.ofInt("textColor", Color.parseColor("#FFFF0000"), Color.parseColor("#FF0000FF"))
+        val textColor = PropertyValuesHolder.ofInt(
+            "textColor",
+            Color.parseColor("#FFFF0000"),
+            Color.parseColor("#FF0000FF")
+        )
         textColor.setEvaluator(ArgbEvaluator())
-        currentAnimator = ObjectAnimator.ofPropertyValuesHolder(txt_animate, rotationX, textColor).apply {
-            duration = 10000
-            interpolator = AccelerateDecelerateInterpolator()
-            repeatCount = INFINITE
-            repeatMode = REVERSE
-            start()
-        }
+        currentAnimator =
+            ObjectAnimator.ofPropertyValuesHolder(txt_animate, rotationX, textColor).apply {
+                duration = 10000
+                interpolator = AccelerateDecelerateInterpolator()
+                repeatCount = INFINITE
+                repeatMode = REVERSE
+                start()
+            }
+    }
 
+    fun propertyValueHoldersXML(view: View) {
+        currentAnimator?.cancel()
+        txt_animate.paint.shader = null
+        currentAnimator =
+            (AnimatorInflater.loadAnimator(
+                this,
+                R.animator.custom_property_value_holder
+            ) as ObjectAnimator).apply {
+                target = txt_animate
+                start()
+            }
     }
 
     fun animationSet(view: View) {
@@ -81,25 +113,48 @@ class MainActivity : AppCompatActivity() {
         txt_animate.paint.shader = null
 
         val rotationX = PropertyValuesHolder.ofFloat(View.ROTATION_X, 0f, 3600f)
-        val textColorX = PropertyValuesHolder.ofInt("textColor", Color.parseColor("#FFFF0000"), Color.parseColor("#FF0000FF"))
+        val textColorX = PropertyValuesHolder.ofInt(
+            "textColor",
+            Color.parseColor("#FFFF0000"),
+            Color.parseColor("#FF0000FF")
+        )
         textColorX.setEvaluator(ArgbEvaluator())
-        val rotateXColor = ObjectAnimator.ofPropertyValuesHolder(txt_animate, rotationX, textColorX).apply {
-            duration = 10000
-            interpolator = AccelerateDecelerateInterpolator()
-        }
+        val rotateXColor =
+            ObjectAnimator.ofPropertyValuesHolder(txt_animate, rotationX, textColorX).apply {
+                duration = 10000
+                interpolator = AccelerateDecelerateInterpolator()
+            }
 
         val rotationY = PropertyValuesHolder.ofFloat(View.ROTATION_Y, 0f, 3600f)
-        val textColorY = PropertyValuesHolder.ofInt("textColor", Color.parseColor("#FF0000FF"), Color.parseColor("#FFFF0000"))
+        val textColorY = PropertyValuesHolder.ofInt(
+            "textColor",
+            Color.parseColor("#FF0000FF"),
+            Color.parseColor("#FFFF0000")
+        )
         textColorY.setEvaluator(ArgbEvaluator())
-        val rotateYColor = ObjectAnimator.ofPropertyValuesHolder(txt_animate, rotationY, textColorY).apply {
-            duration = 10000
-            interpolator = AccelerateDecelerateInterpolator()
-        }
+        val rotateYColor =
+            ObjectAnimator.ofPropertyValuesHolder(txt_animate, rotationY, textColorY).apply {
+                duration = 10000
+                interpolator = AccelerateDecelerateInterpolator()
+            }
 
-        currentAnimator = AnimatorSet().apply{
+        currentAnimator = AnimatorSet().apply {
             play(rotateYColor).after(rotateXColor)
             start()
         }
+    }
+
+    fun animationSetXML(view: View) {
+        currentAnimator?.cancel()
+        txt_animate.paint.shader = null
+        currentAnimator =
+            (AnimatorInflater.loadAnimator(
+                this,
+                R.animator.custom_animator_set
+            ) as AnimatorSet).apply {
+                setTarget(txt_animate)
+                start()
+            }
     }
 
     fun valueAnimator(view: View) {
@@ -136,7 +191,7 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
-class GradientArgEvaluator: TypeEvaluator<IntArray> {
+class GradientArgEvaluator : TypeEvaluator<IntArray> {
     private val argbEvaluator = ArgbEvaluator()
 
     override fun evaluate(fraction: Float, startValue: IntArray, endValue: IntArray): IntArray {

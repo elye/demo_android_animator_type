@@ -27,7 +27,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2"
+        android:layout_weight="3"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -40,7 +40,7 @@
         <Button
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:onClick="objectProperty"
+            android:onClick="objectAnimator"
             android:text="Object Animator" />
 
         <Button
@@ -52,14 +52,32 @@
         <Button
             android:layout_width="250dp"
             android:layout_height="wrap_content"
+            android:onClick="objectAnimatorXML"
+            android:text="Object Animator XML" />
+
+        <Button
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
             android:onClick="propertyValueHolders"
             android:text="Property Value Holders" />
 
         <Button
             android:layout_width="250dp"
             android:layout_height="wrap_content"
+            android:onClick="propertyValueHoldersXML"
+            android:text="Property Value Holders XML" />
+
+        <Button
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
             android:onClick="animationSet"
             android:text="Animator Set" />
+
+        <Button
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:onClick="animationSetXML"
+            android:text="Animator Set XML" />
 
         <Button
             android:layout_width="250dp"

@@ -87,7 +87,7 @@ class MainActivity : AppCompatActivity() {
         textColor.setEvaluator(ArgbEvaluator())
         currentAnimator =
             ObjectAnimator.ofPropertyValuesHolder(txt_animate, rotationX, textColor).apply {
-                duration = 10000
+                duration = 5000
                 interpolator = AccelerateDecelerateInterpolator()
                 repeatCount = INFINITE
                 repeatMode = REVERSE
@@ -121,7 +121,7 @@ class MainActivity : AppCompatActivity() {
         textColorX.setEvaluator(ArgbEvaluator())
         val rotateXColor =
             ObjectAnimator.ofPropertyValuesHolder(txt_animate, rotationX, textColorX).apply {
-                duration = 10000
+                duration = 5000
                 interpolator = AccelerateDecelerateInterpolator()
             }
 
@@ -134,7 +134,7 @@ class MainActivity : AppCompatActivity() {
         textColorY.setEvaluator(ArgbEvaluator())
         val rotateYColor =
             ObjectAnimator.ofPropertyValuesHolder(txt_animate, rotationY, textColorY).apply {
-                duration = 10000
+                duration = 5000
                 interpolator = AccelerateDecelerateInterpolator()
             }
 
@@ -175,7 +175,7 @@ class MainActivity : AppCompatActivity() {
         ).apply {
             repeatMode = REVERSE
             repeatCount = INFINITE
-            duration = 10000
+            duration = 5000
             interpolator = AccelerateDecelerateInterpolator()
             addUpdateListener {
 
